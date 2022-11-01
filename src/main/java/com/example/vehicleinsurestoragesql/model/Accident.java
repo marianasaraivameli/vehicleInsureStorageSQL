@@ -19,7 +19,7 @@ public class Accident {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date accidentDate;
-    private String economicLoss;
+    private Double economicLoss;
     private Long idReportedVehicle;
 
     @OneToMany(mappedBy = "accident", fetch = FetchType.LAZY)
