@@ -1,5 +1,6 @@
 package com.example.vehicleinsurestoragesql.controller;
 
+import com.example.vehicleinsurestoragesql.dto.VehiclePBMDTO;
 import com.example.vehicleinsurestoragesql.dto.VehiclePMDTO;
 import com.example.vehicleinsurestoragesql.dto.VehicleYDTO;
 import com.example.vehicleinsurestoragesql.model.Vehicle;
@@ -62,6 +63,13 @@ public class VehicleController {
             @RequestParam("numberOfWheels") Integer doors) {
         List<VehicleYDTO> vehiclePMDTOList = service.getAllVehicleByYearAndDoors(year, doors);
         return new ResponseEntity<>(vehiclePMDTOList, HttpStatus.OK);
+    }
+
+    @GetMapping(params = {"economicLoss"})
+    public ResponseEntity<List<VehiclePBMDTO>> getAllVehicleByEconomicLoss(
+            @RequestParam("economicLoss") Double value) {
+        List<VehiclePBMDTO> vehicleList = service.getAllVehicleByEconomicLoss(value);
+        return new ResponseEntity<>(vehicleList, HttpStatus.OK);
     }
 
 }
