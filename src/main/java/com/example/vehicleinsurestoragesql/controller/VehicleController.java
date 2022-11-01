@@ -1,6 +1,5 @@
 package com.example.vehicleinsurestoragesql.controller;
 
-import com.example.vehicleinsurestoragesql.model.Accident;
 import com.example.vehicleinsurestoragesql.model.Vehicle;
 import com.example.vehicleinsurestoragesql.service.IVehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,4 +41,11 @@ public class VehicleController {
         service.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/plate")
+    public ResponseEntity<List<String>> getAllPlates() {
+        List<String> plates = service.getAllPlate();
+        return new ResponseEntity<>(plates, HttpStatus.OK);
+    }
+
 }
