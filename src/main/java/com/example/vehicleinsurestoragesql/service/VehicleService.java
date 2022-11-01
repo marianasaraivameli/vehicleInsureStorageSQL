@@ -1,5 +1,6 @@
 package com.example.vehicleinsurestoragesql.service;
 
+import com.example.vehicleinsurestoragesql.dto.VehiclePMDTO;
 import com.example.vehicleinsurestoragesql.model.Vehicle;
 import com.example.vehicleinsurestoragesql.repository.VehicleRepository;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +42,11 @@ public class VehicleService implements IVehicleService {
     @Override
     public List<String> getAllPlate() {
         return repository.findAllPlates();
+    }
+
+    @Override
+    public List<VehiclePMDTO> getAllVehicleByYear(Integer year) {
+        return repository.findVehicleByYearOfProductionEquals(year);
     }
 
 }
