@@ -20,7 +20,7 @@ public class Vehicle {
     private String plate;
     private String brand;
     private String model;
-    private Date yearOfProduction;
+    private Integer yearOfProduction;
     private Integer numberOfWheels;
 
     // um veiculo - varios sinistros
