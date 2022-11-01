@@ -1,6 +1,7 @@
 package com.example.vehicleinsurestoragesql.controller;
 
 import com.example.vehicleinsurestoragesql.dto.VehiclePMDTO;
+import com.example.vehicleinsurestoragesql.dto.VehicleYDTO;
 import com.example.vehicleinsurestoragesql.model.Vehicle;
 import com.example.vehicleinsurestoragesql.service.IVehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,14 @@ public class VehicleController {
     @GetMapping(params = {"yearOfProduction"})
     public ResponseEntity<List<VehiclePMDTO>> getAllVehicleByYear(@RequestParam("yearOfProduction") Integer year) {
         List<VehiclePMDTO> vehiclePMDTOList = service.getAllVehicleByYear(year);
+        return new ResponseEntity<>(vehiclePMDTOList, HttpStatus.OK);
+    }
+
+    @GetMapping(params = {"yearOfProduction", "numberOfWheels"})
+    public ResponseEntity<List<VehicleYDTO>> getAllVehicleByYearAndDoors(
+            @RequestParam("yearOfProduction") Integer year,
+            @RequestParam("numberOfWheels") Integer doors) {
+        List<VehicleYDTO> vehiclePMDTOList = service.getAllVehicleByYearAndDoors(year, doors);
         return new ResponseEntity<>(vehiclePMDTOList, HttpStatus.OK);
     }
 
