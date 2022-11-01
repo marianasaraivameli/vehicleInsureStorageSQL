@@ -58,7 +58,7 @@ public class VehicleService implements IVehicleService {
 
     @Override
     public List<VehiclePBMDTO> getAllVehicleByEconomicLoss(Double value) {
-        return repository.findVehiclesByAccident_EconomicLoss(value);
+        return repository.findVehiclesByEconomicLoss(value);
     }
 
 }

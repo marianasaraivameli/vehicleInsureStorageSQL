@@ -16,5 +16,6 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
     public List<VehiclePMDTO> findVehicleByYearOfProductionEquals(Integer year);
 
     public List<VehicleYDTO> findVehicleByYearOfProductionEqualsAndNumberOfWheelsEquals(Integer year, Integer doors);
-    public List<VehiclePBMDTO> findVehiclesByAccident_EconomicLoss(Double value);
+    @Query("select v from Vehicle v inner join Accident a on a.id = v.accident.id where a.economicLoss >= ?1")
+    public List<VehiclePBMDTO> findVehiclesByEconomicLoss(Double value);
 }

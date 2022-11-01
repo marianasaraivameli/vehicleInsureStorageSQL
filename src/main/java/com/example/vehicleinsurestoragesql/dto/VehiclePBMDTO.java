@@ -24,15 +24,9 @@ public class VehiclePBMDTO implements Serializable {
     private String brand;
     private String model;
 
-//    @ManyToOne
-//    @JoinColumn(name = "id_accident")
-//    @JsonIgnoreProperties("vehicles")
-//    private Accident accident;
-
     public VehiclePBMDTO(Vehicle vehicle) {
         this.plate = vehicle.getPlate();
         this.brand = vehicle.getBrand();
         this.model = vehicle.getModel();
-//        this.accident = vehicle.getAccident();
     }
 }
