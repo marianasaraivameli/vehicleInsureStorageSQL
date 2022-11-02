@@ -1,5 +1,6 @@
 package com.example.vehicleinsurestoragesql.controller;
 
+import com.example.vehicleinsurestoragesql.dto.VehicleDTO;
 import com.example.vehicleinsurestoragesql.dto.VehiclePBMDTO;
 import com.example.vehicleinsurestoragesql.dto.VehiclePMDTO;
 import com.example.vehicleinsurestoragesql.dto.VehicleYDTO;
@@ -72,4 +73,10 @@ public class VehicleController {
         return new ResponseEntity<>(vehicleList, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/sum", params = {"economicLoss"})
+    public ResponseEntity<VehicleDTO> getVehiclesByEconomicLossWithSum(
+            @RequestParam("economicLoss") Double value) {
+        VehicleDTO vehicleDTO = service.getVehiclesByEconomicLossWithSum(value);
+        return new ResponseEntity<>(vehicleDTO, HttpStatus.OK);
+    }
 }
