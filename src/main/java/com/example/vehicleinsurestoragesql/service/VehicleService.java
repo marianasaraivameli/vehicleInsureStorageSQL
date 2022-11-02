@@ -1,5 +1,6 @@
 package com.example.vehicleinsurestoragesql.service;
 
+import com.example.vehicleinsurestoragesql.dto.VehicleDTO;
 import com.example.vehicleinsurestoragesql.dto.VehiclePBMDTO;
 import com.example.vehicleinsurestoragesql.dto.VehiclePMDTO;
 import com.example.vehicleinsurestoragesql.dto.VehicleYDTO;
@@ -59,6 +60,16 @@ public class VehicleService implements IVehicleService {
     @Override
     public List<VehiclePBMDTO> getAllVehicleByEconomicLoss(Double value) {
         return repository.findVehiclesByEconomicLoss(value);
+    }
+
+    @Override
+    public VehicleDTO getVehiclesByEconomicLossWithSum(Double value) {
+        List<VehiclePBMDTO> listVehicle = repository.findVehiclesByEconomicLoss(value);
+        Double sum = repository.findVehiclesByEconomicLossWithSum(value);
+        return VehicleDTO.builder()
+                .listVehiclePBMDTO(listVehicle)
+                .sum(sum)
+                .build();
     }
 
 }
