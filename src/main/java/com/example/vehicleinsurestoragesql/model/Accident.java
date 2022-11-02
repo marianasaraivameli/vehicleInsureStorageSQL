@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter
@@ -22,7 +21,9 @@ public class Accident {
     private Double economicLoss;
     private Long idReportedVehicle;
 
-    @OneToMany(mappedBy = "accident", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("accident")
-    private List<Vehicle> vehicles;
+    // um accident direcionado a um unico veiculo
+    @ManyToOne
+    @JoinColumn(name = "id_accident")
+    @JsonIgnoreProperties("accidents")
+    private Vehicle vehicle;
 }

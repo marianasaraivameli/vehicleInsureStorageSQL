@@ -24,8 +24,8 @@ public class Vehicle {
     private Integer numberOfWheels;
 
     // um veiculo - varios sinistros
-    @ManyToOne
-    @JoinColumn(name = "id_accident")
-    @JsonIgnoreProperties("vehicles")
-    private Accident accident;
+    @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("vehicle")
+    private List<Accident> accidents;
+
 }
