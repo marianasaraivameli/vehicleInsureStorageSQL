@@ -1,5 +1,6 @@
 package com.example.vehicleinsurestoragesql.service;
 
+import com.example.vehicleinsurestoragesql.advisor.InvalidParamException;
 import com.example.vehicleinsurestoragesql.dto.VehicleDTO;
 import com.example.vehicleinsurestoragesql.dto.VehiclePBMDTO;
 import com.example.vehicleinsurestoragesql.dto.VehiclePMDTO;
@@ -24,21 +25,39 @@ public class VehicleService implements IVehicleService {
 
     @Override
     public Vehicle getById(Long id) {
+        if(id == null) {
+            throw new InvalidParamException("O id não pode ser nulo");
+        }
         return repository.findById(id).orElse(null);
     }
 
     @Override
     public Vehicle insert(Vehicle vehicle) {
+        if(vehicle == null) {
+            throw new InvalidParamException("O vehicle não pode ser nulo");
+        }
+        if(vehicle.getId() != null) {
+            throw new InvalidParamException("O vehicle não pode ter ID");
+        }
         return repository.save(vehicle);
     }
 
     @Override
     public Vehicle update(Vehicle vehicle) {
+        if(vehicle == null) {
+            throw new InvalidParamException("O veículo não pode ser nulo");
+        }
+        if(vehicle.getId() == null) {
+            throw new InvalidParamException("O veículo precisa ter ID");
+        }
         return repository.save(vehicle);
     }
 
     @Override
     public void deleteById(Long id) {
+        if(id == null) {
+            throw new InvalidParamException("O id não pode ser nulo");
+        }
         repository.deleteById(id);
     }
 
@@ -64,6 +83,9 @@ public class VehicleService implements IVehicleService {
 
     @Override
     public VehicleDTO getVehiclesByEconomicLossWithSum(Double value) {
+        if(value == null) {
+            throw new InvalidParamException("O valor não pode ser nulo");
+        }
         List<VehiclePBMDTO> listVehicle = repository.findVehiclesByEconomicLoss(value);
         Double sum = repository.findVehiclesByEconomicLossWithSum(value);
         return VehicleDTO.builder()
