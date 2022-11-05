@@ -1,5 +1,6 @@
 package com.example.vehicleinsurestoragesql.controller;
 
+import com.example.vehicleinsurestoragesql.dto.AccidentDTO;
 import com.example.vehicleinsurestoragesql.model.Accident;
 import com.example.vehicleinsurestoragesql.service.IAccidentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class AccidentController {
     private IAccidentService service;
 
     @GetMapping
-    public ResponseEntity<List<Accident>> getAll() {
+    public ResponseEntity<List<AccidentDTO>> getAll() {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 
